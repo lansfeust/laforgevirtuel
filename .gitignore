@@ -1,8 +1,12 @@
 #dossier poubelle 
 uuu/*
+aaa/*
 teste/*
 teste[0123456789].php
-u*.php
+uu*.php
+uu*.html
+aa*.php
+uu*.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
