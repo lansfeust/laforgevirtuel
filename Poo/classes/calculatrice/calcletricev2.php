@@ -4,47 +4,66 @@
 //  require 'MaCalculatrice.php' ;
 
 class calcletricev2 extends MaCalculatrice {
-
-
-    public function getreception ( )
+    
+    function __construct()
     {
+        $this -> getreception(); //regarde l'url pour voir si il y a des nb a recupérer 
         
-        include 'calculatrice.html' ;// a deplacer 
-        if ( isset($_GET["boutton"]) ){ 
-            
-            $this ->nb1 = $_GET["number1"];
-            $this ->nb2 = $_GET["number2"];
-            $this ->boutton = $_GET["boutton"];
-
-            $this-> calculeFille() ;
-        }}
-
-    private function calculeFille()    
-    {   
-        $this-> calcule() ;
+        $this->total = $this -> calcule() ;// teste si c'est une addition ou une soustraction est fait le calcule , le return
+        $this -> affTotal( $this->total ) ;// affiche dans le formulaire la réponse  en la placant dans une session 
     }
 
-    public function affTotal ()
-    {        
-        echo '<h1>heeeee hooooo !';//efface-moi
+    protected  function calcule ()
+    {
+        switch ( $this->boutton  ){
+
+            case 'addition':
+               return  $this->addition($this ->nb1 , $this ->nb2);
+                break ;
+                
+                case 'soustraction':
+                  return  $this->soustraction($this ->nb1 , $this ->nb2);
+                    break ;
+                
+                    case 'multiplication':
+                      return  $this->multiplication($this ->nb1 , $this ->nb2);
+                        break ;
+                
+                        case 'division':
+                          return  $this->division($this ->nb1 , $this ->nb2);
+                            break ;
+        }
+    }
+
+    protected  function multiplication ( $nb1  , $nb2 )
+    {
+        $total = $nb1 * $nb2 ;
+        return $total ;
+    }
+
+    protected  function division ( $nb1  , $nb2 )
+    {
+        $total = $nb1 / $nb2 ;
+        return $total ;
+    }
+
+    public function affTotal ($var)
+    {
         if ( isset($_GET["boutton"]) ){ 
 
 //            new moncookies('affTotal',$this->total,0) ;
 
-        } ;
-        $var = 'bleurg' ; //efface-moi
-        $values = <<<'EOD'
+        $var = <<<EOD
         <form action="" method="get">
             <div class="form-group">
+            <h1>$this->total</h1>
             <button type="reload" class="btn btn-primary" name="boutton" value="addition">Additionner</button>
             <button type="submit" class="btn btn-danger" name="boutton" value="soustraction">Soustraire</button>
             <button type="submit" class="btn btn-primary" name="boutton" value="multiplication">multiplication</button>
             <button type="submit" class="btn btn-danger" name="boutton" value="division">division</button>
             </div>
 EOD;
-    
-//        $_SESSION['affTotal']= $this->$values ;}
+    } ;
         $_SESSION['affTotal']= $var ;}
-//        $_SESSION['affTotal']= $this->total ;
 }
 

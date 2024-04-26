@@ -5,69 +5,72 @@
 class MaCalculatrice {
     
     // crèation des attributs de l'objet
-    private $nb1 ;
-    private $nb2 ;
-    private $total ;
-    private $boutton ;
+    protected $nb1 ;
+    protected $nb2 ;
+    public $total ;
+    protected $boutton ;
 
     // crèation des methodes
+    function __construct()
+    {
+        $this -> getreception(); //regarde l'url pour voir si il y a des nb a recupérer 
+        
+        $this->total = $this -> calcule() ;// teste si c'est une addition ou une soustraction est fait le calcule , le return
+        $this -> affTotal( $this->total ) ;// affiche dans le formulaire la réponse  en la placant dans une session 
+    }
     
     public function marcher ()
     {
         return 'je marche';
     }
 
-    public function getreception ( )
-    {
-        
-        include 'calculatrice.html' ;
+    protected function getreception ( )
+    {   
         if ( isset($_GET["boutton"]) ){ 
             
             $this ->nb1 = $_GET["number1"];
             $this ->nb2 = $_GET["number2"];
             $this ->boutton = $_GET["boutton"];
-
-            $this-> calcule() ;
+            return ;
         }
-        
-        
     }
 
     protected  function calcule ()
     {
-        if ($this->boutton == 'addition'){
-            $this->addition();
+        switch ( $this->boutton  ){
+
+            case 'addition':
+               return  $this->addition($this ->nb1 , $this ->nb2);
+                break ;
+                
+                case 'soustraction':
+                  return  $this->soustraction($this ->nb1 , $this ->nb2);
+                    break ;
         }
-        elseif  ($this->boutton == 'soustraction')
-        {
-            $this->soustraction();
-        }
-        
     }
     
-    protected  function addition ()
+    protected  function addition ( $nb1  , $nb2 )
     {
-        echo '<h1>heeeee hooooo ya quelqu un ?!</h1>';//efface-moi
-        $total = $this ->nb1 + $this ->nb2 ;
-        $this->total = $total ;
-        $this->affTotal(  );
+        $total = $nb1 + $nb2 ;
+        return $total ;
+    }
+    protected  function soustraction ( $nb1  , $nb2 )
+    {
+        $total = $nb1 - $nb2 ;
+        return $total ;
     }
 
-    protected  function soustraction ()
-    {
-        $total = $this ->nb1 - $this ->nb2 ;
-        $this->total = $total ;
-        $this->affTotal(  );
-    }
-
-    protected  function affTotal ()
+    protected  function affTotal ( $var )
     {
         if ( isset($_GET["boutton"]) ){ 
 
-            new moncookies('affTotal',$this->total,0) ;
+            new moncookies('affTotal',$var,0) ;
 
-            $_SESSION['affTotal']= $this->total ;
+            $_SESSION['affTotal']= $var ;
         }
+    }
+    public function gethtml(){
+        include 'calculatrice.html' ;
     }
 
 }
