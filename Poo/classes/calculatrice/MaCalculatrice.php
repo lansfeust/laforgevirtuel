@@ -1,6 +1,6 @@
 <?php
 //  session_start();
-include('../moncookies.php');
+//  include('../moncookies.php');
 
 class MaCalculatrice {
     
@@ -19,6 +19,8 @@ class MaCalculatrice {
 
     public function getreception ( )
     {
+        
+        include 'calculatrice.html' ;
         if ( isset($_GET["boutton"]) ){ 
             
             $this ->nb1 = $_GET["number1"];
@@ -31,35 +33,35 @@ class MaCalculatrice {
         
     }
 
-    private function calcule ()
+    protected  function calcule ()
     {
-        if ($this->boutton = 'addition'){
+        if ($this->boutton == 'addition'){
             $this->addition();
         }
-        elseif  ($this->boutton = 'soustraction')
+        elseif  ($this->boutton == 'soustraction')
         {
             $this->soustraction();
         }
         
     }
     
-    private function addition ()
+    protected  function addition ()
     {
+        echo '<h1>heeeee hooooo ya quelqu un ?!</h1>';//efface-moi
         $total = $this ->nb1 + $this ->nb2 ;
         $this->total = $total ;
         $this->affTotal(  );
     }
 
-    private function soustraction ()
+    protected  function soustraction ()
     {
         $total = $this ->nb1 - $this ->nb2 ;
         $this->total = $total ;
         $this->affTotal(  );
     }
 
-    private function affTotal ()
+    protected  function affTotal ()
     {
-        
         if ( isset($_GET["boutton"]) ){ 
 
             new moncookies('affTotal',$this->total,0) ;

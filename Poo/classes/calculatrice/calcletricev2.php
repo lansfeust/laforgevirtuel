@@ -1,37 +1,39 @@
 <?php
 
-session_start();
-require 'MaCalculatrice.php' ;
+// session_start();
+//  require 'MaCalculatrice.php' ;
 
 class calcletricev2 extends MaCalculatrice {
 
 
+    public function getreception ( )
+    {
+        
+        include 'calculatrice.html' ;// a deplacer 
+        if ( isset($_GET["boutton"]) ){ 
+            
+            $this ->nb1 = $_GET["number1"];
+            $this ->nb2 = $_GET["number2"];
+            $this ->boutton = $_GET["boutton"];
 
-    private function affTotal ()
+            $this-> calculeFille() ;
+        }}
+
+    private function calculeFille()    
+    {   
+        $this-> calcule() ;
+    }
+
+    public function affTotal ()
     {        
+        echo '<h1>heeeee hooooo !';//efface-moi
         if ( isset($_GET["boutton"]) ){ 
 
-            new moncookies('affTotal',$this->total,0) ;
+//            new moncookies('affTotal',$this->total,0) ;
 
-            $_SESSION['affTotal']= $this->total ;
         } ;
+        $var = 'bleurg' ; //efface-moi
         $values = <<<'EOD'
-        Exemple de chaîne sur plusieurs lignes en utilisant la syntaxe Nowdoc.
-        Les barre oblique inversée sont toujours traité de façon littérale,
-        par exemple \\ and \'.
-        EOD;
-    }
-}
-
-
-$personne = new calcletricev2() ;
-$personne ->getreception();
-echo $personne ->marcher();
-//echo '<h1>'.$_SESSION['lol'].'</h1>';
-
-include 'calculatrice.html' ;
-?>
-        <div class="container mt-5">
         <form action="" method="get">
             <div class="form-group">
             <button type="reload" class="btn btn-primary" name="boutton" value="addition">Additionner</button>
@@ -39,11 +41,10 @@ include 'calculatrice.html' ;
             <button type="submit" class="btn btn-primary" name="boutton" value="multiplication">multiplication</button>
             <button type="submit" class="btn btn-danger" name="boutton" value="division">division</button>
             </div>
-            <div class="form-group">
-                <?php //echo $personne ->affTotal(); ?>
-                <?php // echo $_COOKIE['leNom'] ?>
-                
-                <?php// echo '$_SESSION["affTotal"]'. $_SESSION['affTotal'] ?>
-            </div>
-        </form>
-    </div>
+EOD;
+    
+//        $_SESSION['affTotal']= $this->$values ;}
+        $_SESSION['affTotal']= $var ;}
+//        $_SESSION['affTotal']= $this->total ;
+}
+
