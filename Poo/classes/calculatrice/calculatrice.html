@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <!-- Ajout de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Ma Calculatrice</h1>
+        
+        <!-- Premier Formulaire -->
+        <form action="" method="get">
+            <div class="form-group">
+                <label for="number1">Nombre 1 :</label>
+                <input type="number" class="form-control" id="number1" name="number1" required>
+            </div>
+            <div class="form-group">
+                <label for="number2">Nombre 2 :</label>
+                <input type="number" class="form-control" id="number2" name="number2" required>
+            </div>
+            <button type="submit" class="btn btn-primary" name="boutton" value="addition">Additionner</button>
+            <button type="submit" class="btn btn-danger" name="boutton" value="soustraction">Soustraire</button>
+            
+                <?php echo '<hr><h1>'. $_SESSION['affTotal'].'</h1>' ?>
+        </form>
+    </div>
+
+    <!-- Ajout de Bootstrap JS (facultatif) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
