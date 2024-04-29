@@ -69,7 +69,7 @@ class MaCalculatrice {
             $_SESSION['affTotal']= $var ;
         }
     }
-    public function gethtml(){
+    public function sethtml(){
         include 'calculatrice.html' ;
     }
 
