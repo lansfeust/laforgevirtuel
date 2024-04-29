@@ -25,7 +25,7 @@ class Personne {
 
 
 }
-
+/* 
 $personne = new Personne() ;
 $personne ->nom = 'ndaw' ;
 $personne -> prenom = 'laurent' ;
@@ -34,7 +34,7 @@ echo $personne ->parler();
 
 var_dump($personne);
 echo '<hr>';
-print_r($personne);
+print_r($personne); */
 ?>
 
 

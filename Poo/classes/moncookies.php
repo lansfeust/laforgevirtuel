@@ -6,26 +6,26 @@ class moncookies {
         switch ($expires_or_options) 
         {
             case null :
-                $exipre = time()+60 ;
+                $exipre = time()+60 ; // Temps actuel + 1 minutes
                 break;
             
                 case 0 :
-                    $exipre = time() ;
+                    $exipre = time() ; // Temps actuel + 1 minutes
                     break;
             
             
                     case  1 :
-                        $exipre = time()+(60*60) ;
+                        $exipre = time()+(60*60) ; // Temps actuel + 1 heurs
                         break;
          
             
                         case 2 :
-                            $exipre = time()+(60*60*24) ;
+                            $exipre = time()+(60*60*24) ; // Temps actuel + 1 journées
                             break;
          
             
                             case 3 :
-                                $exipre = time()+(60*60*24)*30 ;
+                                $exipre = time()+(60*60*24)*30 ; // Temps actuel + 1 moi
                                 break;
 
                                 default :
