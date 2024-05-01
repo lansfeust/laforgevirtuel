@@ -7,6 +7,7 @@ uu*.php
 uu*.html
 aa*.php
 uu*.html
+Poo/config/connexion.php
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
